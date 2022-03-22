@@ -48,3 +48,30 @@ test('checking toggles button disabling', () => {
   expect(checkbox).not.toBeChecked();
   expect(colorButton).not.toBeDisabled();
 }) 
+
+test('disabling changes color to gray and back again', () => {
+  render(<App />);
+
+  const colorButton = screen.getByRole("button", { name: "Change to blue" });
+  const checkbox = screen.getByRole('checkbox', { name: 'Disable button'});
+
+  //click checkbox to disable and turn gray
+  fireEvent.click(checkbox);
+  expect(colorButton).toHaveStyle({ backgroundColor: "gray" });
+
+  //click again to return to red
+  fireEvent.click(checkbox);
+  expect(colorButton).toHaveStyle({ backgroundColor: "red" });
+
+  //click button to turn to blue
+  fireEvent.click(colorButton);
+  expect(colorButton).toHaveStyle({ backgroundColor: "blue" });
+
+  //click checkbox to disable and turn gray
+  fireEvent.click(checkbox);
+  expect(colorButton).toHaveStyle({ backgroundColor: "gray" });
+
+  //click again to return to blue
+  fireEvent.click(checkbox);
+  expect(colorButton).toHaveStyle({ backgroundColor: "blue" });
+})
