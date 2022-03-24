@@ -20,7 +20,7 @@ test("button has correct initial color", () => {
     expect(colorButton).toHaveStyle({ backgroundColor: "MidnightBlue" });
 
     // expect the button text to be "Change to red"
-    expect(colorButton.textContent).toBe("Change to Medium Violet Red");
+    expect(colorButton).toHaveTextContent("Change to Medium Violet Red");
 });
 
 test("initial conditions", () => {
@@ -53,7 +53,7 @@ test("checking toggles button disabling", () => {
     // click checkbox again
     fireEvent.click(checkbox);
     expect(checkbox).not.toBeChecked();
-    expect(colorButton).not.toBeDisabled();
+    expect(colorButton).toBeEnabled();
 });
 
 test("disabling changes color to gray and back again", () => {
